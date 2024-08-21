@@ -42,7 +42,7 @@ router.get('/:tasteType',async(req,res)=>{
         res.status(500).send({ error:'Internal server error' });
     }
 })
-
+//for update
 router.put('/:id',async(req,res)=>{
     try{
         const menuId=req.params.id;

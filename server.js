@@ -10,7 +10,7 @@ app.get('/',function(req,res){
     res.send("Hello, Welcome to Hotels.")
 })
 
-//comment
+
 //Import the router files
 const personRouter = require('./routes/personRoutes')
 const menuRouter = require('./routes/menuRoutes')

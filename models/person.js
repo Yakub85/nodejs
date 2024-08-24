@@ -33,12 +33,12 @@ const personSchema = new mongoose.Schema({
         required:true
     },
     username:{
-        required:true,
-        type:String
+        type:String,
+        required:true 
     },
     password:{
-        required:true,
-        type:String
+        type:String,
+        required:true
     }
 
 });
@@ -48,15 +48,17 @@ personSchema.pre('save',async function(next){
     if(!person.isModified('password')) return next();
     try{
         //hash password generate
-        const salt =  await bcrypt.genSalt(10)
+        const salt =  await bcrypt.genSalt(10);
 
         //hash password
-        const hashPassword = await bcrypt.hashPassword(person.password,salt)
+        const hashPassword = await bcrypt.hash(person.password, salt);
 
         //Override the plain password with the hashed one 
         person.password = hashPassword;
         next();
-    }catch(err){}
+    }catch(err){
+        next(err)
+    }
 });
 
 personSchema.methods.comparePassword=async function(candidatePassword){

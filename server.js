@@ -17,7 +17,7 @@ app.use(logRequest)
 app.use(passport.initialize());
 const localAuthMiddleware=passport.authenticate('local',{session:false})
 
-app.get('/',localAuthMiddleware,function(req,res){
+app.get('/',function(req,res){
     res.send("Hello, Welcome to Hotels.")
 })
 
@@ -25,8 +25,8 @@ app.get('/',localAuthMiddleware,function(req,res){
 const personRouter = require('./routes/personRoutes')
 const menuRouter = require('./routes/menuRoutes');
 // const Person = require('./models/Person');
-app.use('/person',localAuthMiddleware,personRouter)
-app.use('/menu',localAuthMiddleware,menuRouter)
+app.use('/person',personRouter)
+app.use('/menu',menuRouter)
 
 
 
